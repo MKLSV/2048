@@ -1,0 +1,41 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100dvw;
+    height: 100dvh;
+}
+#root{
+    height: 100%;
+    width: 100%;
+}
+.App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    gap: 100px;
+
+    .score{
+        font-size: 5em;
+    }
+
+    .the-end{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+        background-color: gold;
+        padding: 5vw;
+        border-radius: 5vw;
+        .title{
+            font-size: 5em;
+        }
+        button{
+            font-size: 4em;
+            border-radius: 2vw;
+        }
+    }
+}
