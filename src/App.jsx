@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Game from "./Game";
+import JSConfetti from 'js-confetti'
+
 
 export default function App() {
 
@@ -13,6 +15,17 @@ export default function App() {
     setScore(2)
   }
 
+  function winner() {
+    setGameWin(true)
+    const jsConfetti = new JSConfetti()
+    jsConfetti.addConfetti()
+  }
+  function lose() {
+    setGameOver(true)
+    const jsConfetti = new JSConfetti()
+    jsConfetti.addConfetti()
+  }
+
   return (
     <div className="App">
       <div className="score">
@@ -20,15 +33,15 @@ export default function App() {
       </div>
       {gameOver ?
         <div className="the-end">
-          <span className="title">Ну и хуй с ним...</span>
+          <span className="title">Ну и хуй с ним, вот салютик...</span>
           <button onClick={restart}>RESTART</button>
         </div> :
         gameWin ?
           <div className="the-end">
-            <span className="title">Поздравляю победил...</span>
+            <span className="title">Поздравляю, но кроме салютика ты все равно ничего не получишь...</span>
             <button onClick={restart}>RESTART</button>
           </div> :
-          <Game setScore={setScore} setGameOver={setGameOver} setGameWin={setGameWin} />
+          <Game setScore={setScore} lose={lose} winner={winner} />
       }
     </div>
   );

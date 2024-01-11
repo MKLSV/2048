@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function Game({ setScore, setGameOver, setGameWin }) {
+export default function Game({ setScore, lose, winner }) {
 
 
     const [board, setBoard] = useState([
@@ -278,11 +278,12 @@ export default function Game({ setScore, setGameOver, setGameWin }) {
             }
         }
         if (!emptyCell.length) {
-            setGameOver(true)
+            lose()
             return
         }
         if (score === 2048) {
-            setGameWin(true)
+            setScore(2048)
+            winner()
             return
         }
         const randomIndex = Math.floor(Math.random() * emptyCell.length)
