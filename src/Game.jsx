@@ -270,10 +270,12 @@ export default function Game({ setScore, lose, winner }) {
     function updateBoard(newBoard) {
         let emptyCell = []
         let score = 0
+        let minNum = 2048
 
         for (let row = 0; row < newBoard.length; row++) {
             for (let col = 0; col < newBoard[row].length; col++) {
                 if (newBoard[row][col] > score) score = newBoard[row][col]
+                if (newBoard[row][col] < minNum && newBoard[row][col] > 0) minNum = newBoard[row][col]
                 if (newBoard[row][col] === 0) emptyCell.push({ row, col })
             }
         }
@@ -289,8 +291,7 @@ export default function Game({ setScore, lose, winner }) {
         const randomIndex = Math.floor(Math.random() * emptyCell.length)
         const randomCell = emptyCell[randomIndex]
 
-        let randomNum = score > 8 ? score / 4 : 2
-        newBoard[randomCell.row][randomCell.col] = randomNum
+        newBoard[randomCell.row][randomCell.col] = minNum
         setBoard(newBoard)
         setScore(score)
     }
